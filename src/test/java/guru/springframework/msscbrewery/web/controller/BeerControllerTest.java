@@ -72,6 +72,7 @@ public class BeerControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    @Test
     public void handleUpdate() throws Exception {
         BeerDto beerDto = validBeer;
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);

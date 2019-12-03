@@ -80,8 +80,17 @@ public class BeerControllerTest {
         mockMvc.perform(put("/api/v1/beer/" + validBeer.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
-                .andExpect(status().isCreated());
+                .andExpect(status().isNoContent());
 
         then(beerService).should().updateBeer(any(), any());
+    }
+
+    @Test
+    public void handleDelete() throws Exception {
+        BeerDto beerDto = validBeer;
+
+        mockMvc.perform(delete("/api/v1/beer/" + beerDto.getId())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
     }
 }

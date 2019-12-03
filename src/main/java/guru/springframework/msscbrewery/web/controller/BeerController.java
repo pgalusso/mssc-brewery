@@ -2,6 +2,7 @@ package guru.springframework.msscbrewery.web.controller;
 
 import guru.springframework.msscbrewery.services.BeerService;
 import guru.springframework.msscbrewery.web.model.BeerDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ public class BeerController {
 
     private final BeerService beerService;
 
+    @Autowired
     public BeerController(BeerService beerService) {
         this.beerService = beerService;
     }
@@ -46,7 +48,7 @@ public class BeerController {
 
     @DeleteMapping("/{beerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBeer(UUID beerId) {
+    public void deleteBeer(@PathVariable("beerId")UUID beerId) {
         beerService.deleteById(beerId);
     }
 }
